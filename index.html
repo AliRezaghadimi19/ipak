@@ -1,17 +1,1238 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230F1E36'/><text x='50%' y='55%' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='45' font-weight='700' fill='%23B89246'>IP</text></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IPAK Business Advisory | Strategy. Funding. Growth.</title>
-    <meta name="description" content="IPAK Business Advisory - Vancouver, Canada. Practical, commercially focused business consulting, SR&ED & grant support, leadership coaching by Dr Maryam Khodaviren." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#FCFCFC] text-slate-800 antialiased selection:bg-brand-gold selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPAK Business Advisory | Strategy. Funding. Growth.</title>
+  <meta name="description" content="IPAK Business Advisory - Practical, commercially focused business consulting, SR&ED & grant support, leadership coaching by Dr Maryam Khodaviren. Based in Vancouver, supporting businesses across Canada." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230F1E36'/><text x='50%' y='58%' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='42' font-weight='700' fill='%23B89246'>IP</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- React 18 & ReactDOM -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel Standalone for in-browser JSX compilation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.10/babel.min.js"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#F8F9FA',
+              100: '#E9ECEF',
+              200: '#DEE2E6',
+              gold: '#B89246',
+              'gold-light': '#D4AF67',
+              'gold-dark': '#9A7632',
+              navy: '#0F1E36',
+              'navy-light': '#1A3258',
+              'navy-dark': '#091322',
+            }
+          },
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom minimal scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F8FAFC;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-[#FAFAF9] text-slate-800 antialiased selection:bg-brand-gold selection:text-white">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // --- Inline Crisp Icons (Zero Network Dependency) ---
+    const Icons = {
+      ArrowRight: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      ),
+      ArrowUpRight: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      ),
+      ArrowUp: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+      ),
+      CheckCircle2: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+      ),
+      MapPin: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      ),
+      ShieldCheck: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+      ),
+      Award: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+      ),
+      GraduationCap: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M21.42 10.922a1 1 0 0 0-.019-.838L12.83 2.18a2 2 0 0 0-1.66 0L2.6 10.084a1 1 0 0 0 0 1.832l8.57 7.908a2 2 0 0 0 1.66 0l8.57-7.908a1 1 0 0 0 .02-.994z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+      ),
+      UserCheck: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+      ),
+      DollarSign: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+      ),
+      Rocket: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>
+      ),
+      FileText: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+      ),
+      RefreshCw: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+      ),
+      Users: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      ),
+      Briefcase: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      ),
+      Lightbulb: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg>
+      ),
+      Zap: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      ),
+      Building2: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"></path><path d="M10 18h4"></path></svg>
+      ),
+      HeartHandshake: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9"></path><path d="m14 13 1 1"></path></svg>
+      ),
+      Shield: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+      ),
+      Mail: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+      ),
+      Phone: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      ),
+      Linkedin: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      ),
+      Menu: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+      ),
+      X: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      ),
+      Sparkles: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"></path></svg>
+      ),
+      Clock: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className || "w-4 h-4"}><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      )
+    };
+
+    // --- Header / Navbar Component ---
+    function Navbar() {
+      const [isScrolled, setIsScrolled] = useState(false);
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+      useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      const navLinks = [
+        { name: 'About Us', href: '#about' },
+        { name: 'Services', href: '#services' },
+        { name: 'Who We Work With', href: '#clients' },
+        { name: 'Book a Consultation', href: '#consultation' },
+      ];
+
+      return (
+        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3.5'
+            : 'bg-transparent py-5'
+        }`}>
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+            {/* Logo */}
+            <a href="#" className="group flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-lg bg-brand-navy flex items-center justify-center text-white font-serif font-bold text-lg tracking-wider shadow-sm transition-transform group-hover:scale-105 border border-brand-gold/30">
+                IP
+              </div>
+              <div className="flex flex-col">
+                <span className="font-bold tracking-tight text-slate-900 text-lg leading-tight uppercase font-sans">
+                  IPAK
+                </span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-brand-gold font-semibold">
+                  Business Advisory
+                </span>
+              </div>
+            </a>
+
+            {/* Desktop Navigation Links */}
+            <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="transition-colors hover:text-slate-950 hover:underline underline-offset-8 decoration-brand-gold decoration-2"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+
+            {/* Desktop CTA */}
+            <div className="hidden md:flex items-center">
+              <a
+                href="#consultation"
+                className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full bg-brand-navy text-white hover:bg-slate-800 transition-all shadow-xs group"
+              >
+                <span>Book Consultation</span>
+                <Icons.ArrowUpRight className="w-3.5 h-3.5 text-brand-gold transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
+
+            {/* Mobile menu trigger */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <Icons.X className="w-6 h-6" /> : <Icons.Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Mobile Drawer */}
+          {mobileMenuOpen && (
+            <div className="md:hidden bg-white/98 border-b border-slate-200 px-6 py-6 shadow-xl space-y-4">
+              <div className="flex flex-col space-y-3 font-medium text-slate-800">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="py-2 text-base border-b border-slate-100 hover:text-brand-gold transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+              <div className="pt-2">
+                <a
+                  href="#consultation"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center space-x-2 text-center text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-full bg-brand-navy text-white shadow-xs"
+                >
+                  <span>Book a Consultation</span>
+                  <Icons.ArrowUpRight className="w-3.5 h-3.5 text-brand-gold" />
+                </a>
+              </div>
+            </div>
+          )}
+        </header>
+      );
+    }
+
+    // --- Hero Component ---
+    function Hero() {
+      return (
+        <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-gradient-to-b from-slate-50/70 via-white to-white">
+          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:28px_28px] opacity-30 pointer-events-none" />
+          <div className="absolute top-1/4 right-5 w-72 h-72 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-10 left-10 w-96 h-96 bg-brand-navy/5 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div className="max-w-4xl mx-auto text-center space-y-8">
+              
+              {/* Regional Presence Tag */}
+              <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-medium tracking-wide">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
+                </span>
+                <span className="flex items-center space-x-1.5">
+                  <Icons.MapPin className="w-3.5 h-3.5 text-slate-500 inline" />
+                  <span>Vancouver, BC &bull; Supporting Businesses Across Canada</span>
+                </span>
+              </div>
+
+              {/* Core Headings */}
+              <div className="space-y-4">
+                <h2 className="text-xs sm:text-sm uppercase tracking-[0.25em] font-semibold text-brand-gold">
+                  IPAK Business Advisory
+                </h2>
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-slate-950 leading-[1.12]">
+                  Strategy. Funding. Growth.
+                </h1>
+              </div>
+
+              {/* Short Introduction */}
+              <p className="text-lg sm:text-xl text-slate-600 font-light leading-relaxed max-w-2xl mx-auto">
+                Practical, commercially focused advisory helping Canadian founders, SMEs, and established enterprises unlock non-dilutive capital, navigate complex challenges, and scale with confidence.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <a
+                  href="#consultation"
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-full bg-brand-navy text-white text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-md group border border-slate-800"
+                >
+                  <span>Book a Consultation</span>
+                  <Icons.ArrowRight className="w-4 h-4 text-brand-gold transition-transform group-hover:translate-x-1" />
+                </a>
+                <a
+                  href="#services"
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-slate-800 text-xs font-semibold uppercase tracking-wider border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all"
+                >
+                  Explore Our Services
+                </a>
+              </div>
+
+              {/* Highlights Ribbon */}
+              <div className="pt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left border-t border-slate-200/80 max-w-3xl mx-auto">
+                <div className="p-3">
+                  <h4 className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+                    <span>Commercial Focus</span>
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-1">Direct bottom-line results over abstract theories.</p>
+                </div>
+                <div className="p-3">
+                  <h4 className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+                    <span>SR&ED & Grant Experts</span>
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-1">Maximizing non-dilutive government capital.</p>
+                </div>
+                <div className="p-3">
+                  <h4 className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+                    <span>ICF-Qualified Coaching</span>
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-1">Executive leadership for sustainable growth.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- About Us Component ---
+    function About() {
+      return (
+        <section id="about" className="py-24 bg-white border-t border-slate-100">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            
+            <div className="max-w-3xl mb-16">
+              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-brand-gold mb-3">
+                About Us
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-950 tracking-tight leading-snug">
+                Practical, commercially focused business advisory.
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+              
+              {/* Left Column: What IPAK does & Practical Approach */}
+              <div className="lg:col-span-7 space-y-8">
+                <div className="space-y-4">
+                  <h3 className="text-xl font-serif font-semibold text-slate-900">
+                    What IPAK Does
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed text-base">
+                    IPAK Business Advisory partners with ambitious leaders, established business owners, and innovative enterprises to solve their most pressing strategic and financial hurdles. From securing critical government grants like SR&ED to structuring scalable commercial business models, we build resilient foundations for long-term growth.
+                  </p>
+                </div>
+
+                <div className="space-y-4 pt-4 border-t border-slate-100">
+                  <h3 className="text-xl font-serif font-semibold text-slate-900">
+                    Your Practical, Commercially Focused Approach
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed text-base">
+                    No generic formulas or abstract theories. We bring clarity to uncertainty, navigate complex financial and regulatory landscapes, and equip decision-makers with actionable roadmaps that directly strengthen balance sheets and accelerate market execution.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <div className="flex items-start space-x-2 text-sm text-slate-700">
+                      <Icons.CheckCircle2 className="w-4 h-4 text-brand-gold mt-0.5 shrink-0" />
+                      <span>Commercial rigor & market viability</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-sm text-slate-700">
+                      <Icons.CheckCircle2 className="w-4 h-4 text-brand-gold mt-0.5 shrink-0" />
+                      <span>Non-dilutive grant maximization</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-sm text-slate-700">
+                      <Icons.CheckCircle2 className="w-4 h-4 text-brand-gold mt-0.5 shrink-0" />
+                      <span>Turnaround & operational resilience</span>
+                    </div>
+                    <div className="flex items-start space-x-2 text-sm text-slate-700">
+                      <Icons.CheckCircle2 className="w-4 h-4 text-brand-gold mt-0.5 shrink-0" />
+                      <span>Executive empowerment & team alignment</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Dr Maryam Khodaviren Profile Card */}
+              <div className="lg:col-span-5">
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-10 shadow-xs relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-bl-full pointer-events-none" />
+
+                  <div className="space-y-6 relative">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 rounded-full bg-brand-navy text-white flex items-center justify-center font-serif text-2xl font-bold shadow-xs border-2 border-brand-gold">
+                        MK
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-serif font-bold text-slate-900 leading-tight">
+                          Dr Maryam Khodaviren
+                        </h3>
+                        <p className="text-xs uppercase tracking-wider text-brand-gold font-semibold mt-0.5">
+                          Principal Consultant & Coach
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-slate-600 leading-relaxed italic border-l-2 border-brand-gold pl-4 py-0.5">
+                      "Bridging academic depth with pragmatic commercial strategy to empower leaders across Canada."
+                    </p>
+
+                    {/* Specific Credentials Requested */}
+                    <div className="space-y-4 pt-2">
+                      <div className="flex items-start space-x-3 text-slate-800">
+                        <div className="p-1.5 rounded-lg bg-white text-brand-navy shadow-xs border border-slate-200 mt-0.5">
+                          <Icons.UserCheck className="w-4 h-4 text-brand-gold" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900">Business Consultant</p>
+                          <p className="text-xs text-slate-500">Commercially focused advisory for SMEs, founders, and enterprise transitions.</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3 text-slate-800">
+                        <div className="p-1.5 rounded-lg bg-white text-brand-navy shadow-xs border border-slate-200 mt-0.5">
+                          <Icons.Award className="w-4 h-4 text-brand-gold" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900">ICF-Qualified Leadership Coach</p>
+                          <p className="text-xs text-slate-500">International Coaching Federation credentialed executive coaching.</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3 text-slate-800">
+                        <div className="p-1.5 rounded-lg bg-white text-brand-navy shadow-xs border border-slate-200 mt-0.5">
+                          <Icons.GraduationCap className="w-4 h-4 text-brand-gold" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900">PhD in Business Management</p>
+                          <p className="text-xs text-slate-500">Doctorate awarded from the United Kingdom.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      <a
+                        href="#consultation"
+                        className="inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-wider text-brand-navy hover:text-brand-gold transition-colors"
+                      >
+                        <span>Request consultation with Dr Khodaviren &rarr;</span>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      );
+    }
+
+    // --- Services Component (The Five Core Services) ---
+    function Services() {
+      const services = [
+        {
+          id: 'sred',
+          number: '01',
+          title: 'SR&ED & Grant Support',
+          icon: Icons.DollarSign,
+          description:
+            'Maximize non-dilutive government funding. We guide you through Canada’s Scientific Research & Experimental Development (SR&ED) tax incentive and provincial grant programs with meticulous technical and financial preparation.',
+          points: [
+            'SR&ED eligibility assessment & claim structuring',
+            'Federal & provincial innovation grant applications',
+            'Technical narrative development & CRA audit defense',
+          ],
+        },
+        {
+          id: 'bizdev',
+          number: '02',
+          title: 'Business Development & Growth',
+          icon: Icons.Rocket,
+          description:
+            'Strategic roadmaps that accelerate revenue, enter new markets, and capture market share. We pinpoint commercial opportunities and streamline sales operations for sustainable scalability.',
+          points: [
+            'Commercial expansion & market penetration strategy',
+            'Sales pipeline optimization & monetization models',
+            'Strategic commercial partnerships & alliances',
+          ],
+        },
+        {
+          id: 'startup',
+          number: '03',
+          title: 'Start-Up & Business Planning',
+          icon: Icons.FileText,
+          description:
+            'Turn innovative ideas into resilient, investor-ready commercial ventures. From financial models to operational blueprints, we set founders on a proven trajectory.',
+          points: [
+            'Investor-ready, bank-compliant business plans',
+            'Financial forecasting & pro-forma valuation models',
+            'Go-to-market roadmaps & corporate governance',
+          ],
+        },
+        {
+          id: 'turnaround',
+          number: '04',
+          title: 'Business Improvement & Turnaround',
+          icon: Icons.RefreshCw,
+          description:
+            'Targeted interventions for companies facing cash-flow pressure, operational bottlenecks, or shifting market dynamics. We revitalize profitability and safeguard solvency.',
+          points: [
+            'Operational diagnostics & cost restructuring',
+            'Cash flow stabilization & working capital management',
+            'Workflow re-engineering & performance metrics',
+          ],
+        },
+        {
+          id: 'coaching',
+          number: '05',
+          title: 'Corporate Training & Leadership Coaching',
+          icon: Icons.Users,
+          description:
+            'Led by ICF-qualified leadership coach Dr Maryam Khodaviren. We develop decisive leaders, align executive teams, and foster an organizational culture that performs.',
+          points: [
+            'One-on-one ICF accredited executive coaching',
+            'Executive team alignment & culture transformation',
+            'Strategic change management & decision workshops',
+          ],
+        },
+      ];
+
+      return (
+        <section id="services" className="py-24 bg-slate-50/60 border-t border-slate-100">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+              <div className="max-w-2xl">
+                <p className="text-xs uppercase tracking-[0.2em] font-semibold text-brand-gold mb-3">
+                  Our Services
+                </p>
+                <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-950 tracking-tight">
+                  Five core disciplines for enduring commercial success.
+                </h2>
+              </div>
+              <p className="text-sm text-slate-500 max-w-sm">
+                Comprehensively addressing funding, strategy, operations, and human leadership across Canada.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                const isHighlight = index === 0;
+
+                return (
+                  <div
+                    key={service.id}
+                    className={`group bg-white rounded-2xl p-8 border transition-all duration-300 hover:shadow-lg flex flex-col justify-between ${
+                      isHighlight ? 'border-brand-gold/60' : 'border-slate-200/90'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-navy group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors">
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        <span className="font-serif text-slate-300 text-lg font-bold group-hover:text-brand-gold transition-colors">
+                          {service.number}
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl font-serif font-bold text-slate-900 mb-3 group-hover:text-brand-navy">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                        {service.description}
+                      </p>
+
+                      <ul className="space-y-2 border-t border-slate-100 pt-4 mb-6">
+                        {service.points.map((pt, i) => (
+                          <li key={i} className="text-xs text-slate-600 flex items-start space-x-2">
+                            <span className="text-brand-gold font-bold mr-1">&bull;</span>
+                            <span>{pt}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="pt-2">
+                      <a
+                        href="#consultation"
+                        className="inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-wider text-slate-800 hover:text-brand-gold group-hover:translate-x-1 transition-all"
+                      >
+                        <span>Inquire About This Service &rarr;</span>
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Consultation Callout Box */}
+              <div className="bg-brand-navy text-white rounded-2xl p-8 border border-slate-800 flex flex-col justify-between shadow-xs relative overflow-hidden">
+                <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-brand-gold/10 rounded-full blur-2xl pointer-events-none" />
+
+                <div className="space-y-4">
+                  <span className="text-xs uppercase tracking-widest font-semibold text-brand-gold">
+                    Strategic Synergy
+                  </span>
+                  <h3 className="text-2xl font-serif font-bold leading-snug">
+                    Unsure which service best fits your stage?
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    Most clients integrate grant funding alongside business development and leadership coaching. Let's design a customized roadmap for your milestones.
+                  </p>
+                </div>
+
+                <div className="pt-8">
+                  <a
+                    href="#consultation"
+                    className="w-full inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-brand-gold text-slate-950 font-semibold text-xs uppercase tracking-wider hover:bg-brand-gold-light transition-all shadow"
+                  >
+                    <span>Schedule an Evaluation</span>
+                    <Icons.ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      );
+    }
+
+    // --- Who We Work With Component ---
+    function WhoWeWorkWith() {
+      const clientSegments = [
+        {
+          title: 'Business Owners',
+          icon: Icons.Briefcase,
+          desc: 'Navigating strategic crossroads, market expansion, and capital allocation to protect and grow their enterprise.',
+        },
+        {
+          title: 'Entrepreneurs',
+          icon: Icons.Lightbulb,
+          desc: 'Translating groundbreaking concepts into commercially viable businesses with disciplined execution.',
+        },
+        {
+          title: 'Start-ups',
+          icon: Icons.Zap,
+          desc: 'Securing non-dilutive grant funding, establishing market readiness, and preparing for institutional investment.',
+        },
+        {
+          title: 'SMEs',
+          icon: Icons.Building2,
+          desc: 'Small & Medium Enterprises seeking operational efficiency, sales channel expansion, and SR&ED maximization.',
+        },
+        {
+          title: 'Family Businesses',
+          icon: Icons.HeartHandshake,
+          desc: 'Balancing multi-generational values with modern commercial governance, leadership succession, and sustainable growth.',
+        },
+        {
+          title: 'Established Companies',
+          icon: Icons.Shield,
+          desc: 'Mature enterprises pursuing turnaround initiatives, corporate restructuring, or executive leadership alignment.',
+        },
+      ];
+
+      return (
+        <section id="clients" className="py-24 bg-white border-t border-slate-100">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            
+            <div className="max-w-3xl mb-16">
+              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-brand-gold mb-3">
+                Who We Work With
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-950 tracking-tight leading-snug">
+                Partnering with decision-makers at every milestone.
+              </h2>
+              <p className="mt-4 text-slate-600 text-base">
+                Tailored advisory frameworks adapted to your commercial complexity, capital structure, and organizational goals.
+              </p>
+            </div>
+
+            {/* 6 Client Segments */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {clientSegments.map((segment, idx) => {
+                const Icon = segment.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="p-7 rounded-2xl border border-slate-200/90 bg-slate-50/40 hover:bg-white hover:border-brand-gold/60 hover:shadow-md transition-all duration-300 group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-brand-navy mb-5 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors shadow-xs">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-lg font-serif font-bold text-slate-900 mb-2">
+                      {segment.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {segment.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Canadian Regional Presence Highlight */}
+            <div className="rounded-3xl bg-gradient-to-r from-brand-navy via-slate-900 to-brand-navy text-white p-8 sm:p-12 border border-slate-800 shadow-md relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-8 space-y-4">
+                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 text-brand-gold text-xs font-semibold uppercase tracking-wider border border-white/10">
+                    <Icons.MapPin className="w-3.5 h-3.5" />
+                    <span>Based in Vancouver &bull; Across Canada</span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white">
+                    Based in Vancouver and supporting businesses across Canada.
+                  </h3>
+
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                    While headquartered on the Pacific coast in Vancouver, British Columbia, we deliver strategic advisory and grant consulting nationwide. We navigate both provincial economic programs and federal frameworks like SR&ED.
+                  </p>
+
+                  <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-xs text-slate-300 font-medium">
+                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-brand-gold" /> British Columbia</span>
+                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-brand-gold" /> Alberta & Prairies</span>
+                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-brand-gold" /> Ontario & Quebec</span>
+                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-brand-gold" /> Atlantic Canada</span>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-4 lg:text-right">
+                  <a
+                    href="#consultation"
+                    className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-white text-slate-900 text-xs font-semibold uppercase tracking-wider hover:bg-brand-gold hover:text-slate-950 transition-all shadow-md group"
+                  >
+                    <span>Book a Consultation</span>
+                    <Icons.ArrowRight className="w-4 h-4 text-brand-navy group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      );
+    }
+
+    // --- Book a Consultation Form Component ---
+    function ConsultationSection() {
+      const [formData, setFormData] = useState({
+        name: '',
+        businessName: '',
+        email: '',
+        phone: '',
+        topic: 'Funding & SR&ED Grants',
+        message: '',
+      });
+
+      const [isSubmitting, setIsSubmitting] = useState(false);
+      const [isSubmitted, setIsSubmitted] = useState(false);
+
+      const topics = [
+        'Funding & SR&ED Grants',
+        'Business Development & Growth',
+        'Start-Up & Business Planning',
+        'Business Challenges & Turnaround',
+        'Corporate Training & Leadership Coaching',
+        'General Advisory Inquiry',
+      ];
+
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setTimeout(() => {
+          setIsSubmitting(false);
+          setIsSubmitted(true);
+        }, 600);
+      };
+
+      return (
+        <section id="consultation" className="py-24 bg-slate-50 border-t border-slate-200/80">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+              
+              {/* Context / Closing Section Copy */}
+              <div className="lg:col-span-5 space-y-8">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] font-semibold text-brand-gold mb-3">
+                    Book a Consultation
+                  </p>
+                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-950 tracking-tight leading-snug">
+                    Let’s Talk About Your Business.
+                  </h2>
+                </div>
+
+                <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
+                  Every meaningful partnership begins with a confidential conversation. Clients are invited to discuss funding options, business development, sustainable growth, start-up plans, business turnaround challenges, training, or executive leadership coaching.
+                </p>
+
+                <div className="space-y-4 pt-4 border-t border-slate-200">
+                  <div className="flex items-start space-x-3 text-slate-700">
+                    <Icons.Clock className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">Direct Senior Engagement</p>
+                      <p className="text-xs text-slate-500">Inquiries are reviewed directly by Dr Maryam Khodaviren and senior advisors.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3 text-slate-700">
+                    <Icons.Sparkles className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">Strict Non-Disclosure</p>
+                      <p className="text-xs text-slate-500">Your commercial strategy, financials, and intellectual property remain strictly confidential.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3 text-slate-700">
+                    <Icons.MapPin className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">Vancouver & Nationwide</p>
+                      <p className="text-xs text-slate-500">In-person consultations in Vancouver, BC, and virtual strategic sessions across Canada.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-white border border-slate-200 text-sm space-y-2">
+                  <p className="font-semibold text-xs uppercase tracking-wider text-slate-500">
+                    Direct Office Contact
+                  </p>
+                  <p className="flex items-center space-x-2 text-slate-700">
+                    <Icons.Mail className="w-4 h-4 text-brand-gold" />
+                    <a href="mailto:contact@ipakadvisory.ca" className="hover:text-brand-navy underline-offset-4 hover:underline">
+                      contact@ipakadvisory.ca
+                    </a>
+                  </p>
+                  <p className="flex items-center space-x-2 text-slate-700">
+                    <Icons.Phone className="w-4 h-4 text-brand-gold" />
+                    <a href="tel:+16045550199" className="hover:text-brand-navy">
+                      +1 (604) 555-0199
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              {/* Form Card */}
+              <div className="lg:col-span-7">
+                <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm relative">
+                  
+                  {isSubmitted ? (
+                    <div className="text-center py-12 space-y-6">
+                      <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto border border-emerald-200">
+                        <Icons.CheckCircle2 className="w-8 h-8" />
+                      </div>
+                      <div className="space-y-2 max-w-md mx-auto">
+                        <h3 className="text-2xl font-serif font-bold text-slate-900">
+                          Enquiry Received
+                        </h3>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                          Thank you, <span className="font-semibold text-slate-900">{formData.name}</span>. We have received your consultation request for <span className="font-semibold text-slate-900">{formData.businessName || 'your business'}</span>.
+                        </p>
+                        <p className="text-xs text-slate-500">
+                          Dr Maryam Khodaviren or an advisory lead will connect with you within 24 business hours at <span className="font-medium text-slate-800">{formData.email}</span>.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setIsSubmitted(false)}
+                        className="inline-flex items-center px-6 py-2.5 rounded-full border border-slate-300 text-xs font-semibold uppercase tracking-wider text-slate-700 hover:bg-slate-50 transition-colors"
+                      >
+                        Submit another enquiry
+                      </button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      <div className="border-b border-slate-100 pb-4 mb-2">
+                        <h3 className="text-xl font-serif font-bold text-slate-900">
+                          Send Your Enquiry
+                        </h3>
+                        <p className="text-xs text-slate-500 mt-1">
+                          Share your details and we will coordinate an initial advisory discussion.
+                        </p>
+                      </div>
+
+                      {/* Name */}
+                      <div>
+                        <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                          Name <span className="text-brand-gold">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Your full name"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                        />
+                      </div>
+
+                      {/* Business name */}
+                      <div>
+                        <label htmlFor="businessName" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                          Business Name <span className="text-brand-gold">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="businessName"
+                          name="businessName"
+                          required
+                          value={formData.businessName}
+                          onChange={handleChange}
+                          placeholder="Company or venture name"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                        />
+                      </div>
+
+                      {/* Email & Phone */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                            Email <span className="text-brand-gold">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="you@company.ca"
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label htmlFor="phone" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                            Phone <span className="text-brand-gold">*</span>
+                          </label>
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            required
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="+1 (604) 000-0000"
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Topic Selector */}
+                      <div>
+                        <label htmlFor="topic" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                          Discussion Area
+                        </label>
+                        <select
+                          id="topic"
+                          name="topic"
+                          value={formData.topic}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 text-sm text-slate-800 bg-white transition-all outline-none"
+                        >
+                          {topics.map((t) => (
+                            <option key={t} value={t}>{t}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Message */}
+                      <div>
+                        <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                          Brief Note (Optional)
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          rows="3"
+                          value={formData.message}
+                          onChange={handleChange}
+                          placeholder="Tell us about your timing, funding objectives, or leadership focus..."
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none resize-none"
+                        ></textarea>
+                      </div>
+
+                      {/* Send Enquiry Button */}
+                      <div className="pt-2">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full inline-flex items-center justify-center space-x-2 py-4 px-6 rounded-full bg-brand-navy text-white text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-md active:scale-[0.99] disabled:opacity-70 group border border-slate-800"
+                        >
+                          {isSubmitting ? (
+                            <span>Submitting enquiry...</span>
+                          ) : (
+                            <>
+                              <span>Send Enquiry</span>
+                              <Icons.ArrowRight className="w-3.5 h-3.5 text-brand-gold transition-transform group-hover:translate-x-1" />
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </form>
+                  )}
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      );
+    }
+
+    // --- Privacy Modal ---
+    function PrivacyModal({ isOpen, onClose }) {
+      if (!isOpen) return null;
+
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-slate-200 relative">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+              <div className="flex items-center space-x-2 text-brand-navy">
+                <Icons.Shield className="w-5 h-5 text-brand-gold" />
+                <h3 className="text-xl font-serif font-bold text-slate-900">
+                  Privacy Policy
+                </h3>
+              </div>
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              >
+                <Icons.X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
+              <p className="font-semibold text-slate-800">
+                IPAK Business Advisory &bull; Vancouver, British Columbia, Canada
+              </p>
+              <h4 className="font-semibold text-slate-900 pt-2">1. Privacy Protection</h4>
+              <p>
+                IPAK Business Advisory adheres to the Personal Information Protection Act (PIPA) of British Columbia and the federal Personal Information Protection and Electronic Documents Act (PIPEDA) of Canada.
+              </p>
+              <h4 className="font-semibold text-slate-900 pt-2">2. Confidentiality of Business Data</h4>
+              <p>
+                All proprietary client strategies, financial assessments, SR&ED scientific technical logs, and consultation notes are treated under rigorous non-disclosure and professional confidentiality. We never sell or distribute client records.
+              </p>
+              <h4 className="font-semibold text-slate-900 pt-2">3. Contact</h4>
+              <p>
+                Questions regarding our privacy practices can be directed to <a href="mailto:privacy@ipakadvisory.ca" className="text-brand-navy underline">privacy@ipakadvisory.ca</a>.
+              </p>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+              <button
+                onClick={onClose}
+                className="px-5 py-2 rounded-full bg-slate-900 text-white text-xs font-semibold uppercase tracking-wider hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // --- Footer Component ---
+    function Footer({ onOpenPrivacy }) {
+      const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      return (
+        <footer className="bg-brand-navy-dark text-slate-300 pt-16 pb-12 border-t border-slate-800">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-slate-800">
+              
+              {/* Brand Col */}
+              <div className="lg:col-span-5 space-y-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-serif font-bold text-base tracking-wider border border-brand-gold/40">
+                    IP
+                  </div>
+                  <span className="font-bold tracking-tight text-white text-lg font-sans">
+                    IPAK <span className="font-light text-slate-400">Business Advisory</span>
+                  </span>
+                </div>
+
+                <p className="text-brand-gold font-serif text-base italic">
+                  Strategy. Funding. Growth.
+                </p>
+
+                <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+                  Practical, commercially focused business consulting, SR&ED and non-dilutive grant support, and executive leadership coaching.
+                </p>
+
+                <div className="pt-2 flex items-center space-x-2 text-xs text-slate-400">
+                  <Icons.MapPin className="w-4 h-4 text-brand-gold" />
+                  <span>Vancouver, Canada</span>
+                </div>
+              </div>
+
+              {/* Navigation */}
+              <div className="lg:col-span-3 space-y-4">
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-white">
+                  Navigation
+                </h4>
+                <ul className="space-y-2.5 text-sm text-slate-400">
+                  <li><a href="#about" className="hover:text-brand-gold transition-colors">About Us</a></li>
+                  <li><a href="#services" className="hover:text-brand-gold transition-colors">Our Services</a></li>
+                  <li><a href="#clients" className="hover:text-brand-gold transition-colors">Who We Work With</a></li>
+                  <li><a href="#consultation" className="hover:text-brand-gold transition-colors">Book a Consultation</a></li>
+                </ul>
+              </div>
+
+              {/* Contact & Social */}
+              <div className="lg:col-span-4 space-y-4">
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-white">
+                  Contact
+                </h4>
+                <div className="space-y-3 text-sm text-slate-300">
+                  <a href="mailto:contact@ipakadvisory.ca" className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group">
+                    <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-brand-gold/40">
+                      <Icons.Mail className="w-4 h-4 text-brand-gold" />
+                    </div>
+                    <span>Email: contact@ipakadvisory.ca</span>
+                  </a>
+
+                  <a href="tel:+16045550199" className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group">
+                    <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-brand-gold/40">
+                      <Icons.Phone className="w-4 h-4 text-brand-gold" />
+                    </div>
+                    <span>Phone: +1 (604) 555-0199</span>
+                  </a>
+
+                  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group">
+                    <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-brand-gold/40">
+                      <Icons.Linkedin className="w-4 h-4 text-brand-gold" />
+                    </div>
+                    <span>LinkedIn: IPAK Business Advisory</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+              <p>
+                &copy; {new Date().getFullYear()} IPAK Business Advisory. All rights reserved.
+              </p>
+
+              <div className="flex items-center space-x-6">
+                <button
+                  type="button"
+                  onClick={onOpenPrivacy}
+                  className="hover:text-slate-300 underline-offset-4 hover:underline transition-colors"
+                >
+                  Privacy Policy
+                </button>
+
+                <button
+                  type="button"
+                  onClick={scrollToTop}
+                  className="flex items-center space-x-1.5 text-slate-400 hover:text-white transition-colors"
+                  aria-label="Back to top"
+                >
+                  <span>Back to top</span>
+                  <Icons.ArrowUp className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </footer>
+      );
+    }
+
+    // --- Main App Component ---
+    function App() {
+      const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+
+      return (
+        <div className="min-h-screen flex flex-col bg-[#FAFAF9] text-slate-800 font-sans selection:bg-brand-gold selection:text-white">
+          <Navbar />
+          <main className="flex-grow">
+            <Hero />
+            <About />
+            <Services />
+            <WhoWeWorkWith />
+            <ConsultationSection />
+          </main>
+          <Footer onOpenPrivacy={() => setIsPrivacyOpen(true)} />
+          <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
 </html>
