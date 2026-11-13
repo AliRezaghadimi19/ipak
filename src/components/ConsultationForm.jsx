@@ -105,8 +105,8 @@ export default function ConsultationForm() {
               </p>
               <p className="flex items-center space-x-2 text-slate-700">
                 <Mail className="w-4 h-4 text-brand-gold" />
-                <a href="mailto:contact@ipakadvisory.ca" className="hover:text-brand-navy underline-offset-4 hover:underline">
-                  contact@ipakadvisory.ca
+                <a href="mailto:info@ipakservices.com" className="hover:text-brand-navy underline-offset-4 hover:underline">
+                  info@ipakservices.com
                 </a>
               </p>
               <p className="flex items-center space-x-2 text-slate-700">

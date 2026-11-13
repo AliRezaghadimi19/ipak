@@ -39,7 +39,7 @@ export default function Navbar() {
               IPAK
             </span>
             <span className="text-[10px] tracking-[0.2em] uppercase text-brand-gold font-medium">
-              Business Advisory
+              Business Consulting
             </span>
           </div>
         </a>

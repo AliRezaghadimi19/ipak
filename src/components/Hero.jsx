@@ -29,7 +29,7 @@ export default function Hero() {
           {/* Main Title & Subtitle */}
           <div className="space-y-4">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.25em] font-semibold text-brand-gold">
-              IPAK Business Advisory
+              IPAK Business Consulting
             </h2>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-slate-950 leading-[1.12]">
               Strategy. Funding. Growth.

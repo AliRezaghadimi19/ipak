@@ -8,14 +8,14 @@
     "start": "node server.js",
     "preview": "node server.js"
   },
-  "description": "IPAK Business Advisory - Minimalist React Web Application",
+  "description": "IPAK Business Consulting - Minimalist React Web Application",
   "keywords": [
     "react",
-    "business-advisory",
+    "business-consulting",
     "sred",
     "vancouver",
     "canada"
   ],
-  "author": "IPAK Business Advisory",
+  "author": "IPAK Business Consulting",
   "license": "ISC"
 }

@@ -26,7 +26,7 @@ export default function About() {
                 What IPAK Does
               </h3>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
-                IPAK Business Advisory partners with ambitious leaders, established business owners, and innovative enterprises to solve their most pressing strategic and financial hurdles. From securing critical government grants like SR&ED to structuring scalable business models, we build resilient foundations for long-term commercial success.
+                IPAK Business Consulting partners with ambitious leaders, established business owners, and innovative enterprises to solve their most pressing strategic and financial hurdles. From securing critical government grants like SR&ED to structuring scalable business models, we build resilient foundations for long-term commercial success.
               </p>
             </div>
 

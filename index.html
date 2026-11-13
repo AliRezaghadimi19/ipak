@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IPAK Business Advisory | Strategy. Funding. Growth.</title>
-  <meta name="description" content="IPAK Business Advisory - Practical, commercially focused business consulting, SR&ED & grant support, leadership coaching by Dr Maryam Khodaviren. Based in Vancouver, supporting businesses across Canada." />
+  <title>IPAK Business Consulting | Strategy. Funding. Growth.</title>
+  <meta name="description" content="IPAK Business Consulting - Practical, commercially focused business consulting, SR&ED & grant support, leadership coaching by Dr Maryam Khodaviren. Based in Vancouver, supporting businesses across Canada." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230F1E36'/><text x='50%' y='58%' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='42' font-weight='700' fill='%23B89246'>IP</text></svg>" />
 
   <!-- Fonts -->
@@ -182,7 +182,29 @@
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
             {/* Logo */}
             <a href="#" className="group flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-brand-navy flex items-center justify-center text-white font-serif font-bold text-lg tracking-wider shadow-sm transition-transform group-hover:scale-105 border border-brand-gold/30">
+              <img
+                src="./logo.svg"
+                alt="IPAK Business Consulting"
+                className="h-10 w-auto object-contain hidden"
+                id="brand-logo-img"
+                onLoad={(e) => {
+                  e.target.classList.remove('hidden');
+                  const fb = document.getElementById('brand-logo-fallback');
+                  if (fb) fb.classList.add('hidden');
+                }}
+                onError={(e) => {
+                  // Try logo.png if logo.svg is not found
+                  if (!e.target.dataset.triedPng) {
+                    e.target.dataset.triedPng = 'true';
+                    e.target.src = './logo.png';
+                  } else {
+                    e.target.classList.add('hidden');
+                    const fb = document.getElementById('brand-logo-fallback');
+                    if (fb) fb.classList.remove('hidden');
+                  }
+                }}
+              />
+              <div id="brand-logo-fallback" className="w-10 h-10 rounded-lg bg-brand-navy flex items-center justify-center text-white font-serif font-bold text-lg tracking-wider shadow-sm transition-transform group-hover:scale-105 border border-brand-gold/30">
                 IP
               </div>
               <div className="flex flex-col">
@@ -190,7 +212,7 @@
                   IPAK
                 </span>
                 <span className="text-[10px] tracking-[0.2em] uppercase text-brand-gold font-semibold">
-                  Business Advisory
+                  Business Consulting
                 </span>
               </div>
             </a>
@@ -287,7 +309,7 @@
               {/* Core Headings */}
               <div className="space-y-4">
                 <h2 className="text-xs sm:text-sm uppercase tracking-[0.25em] font-semibold text-brand-gold">
-                  IPAK Business Advisory
+                  IPAK Business Consulting
                 </h2>
                 <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-slate-950 leading-[1.12]">
                   Strategy. Funding. Growth.
@@ -371,7 +393,7 @@
                     What IPAK Does
                   </h3>
                   <p className="text-slate-600 leading-relaxed text-base">
-                    IPAK Business Advisory partners with ambitious leaders, established business owners, and innovative enterprises to solve their most pressing strategic and financial hurdles. From securing critical government grants like SR&ED to structuring scalable commercial business models, we build resilient foundations for long-term growth.
+                    IPAK Business Consulting partners with ambitious leaders, established business owners, and innovative enterprises to solve their most pressing strategic and financial hurdles. From securing critical government grants like SR&ED to structuring scalable commercial business models, we build resilient foundations for long-term growth.
                   </p>
                 </div>
 
@@ -862,8 +884,8 @@
                   </p>
                   <p className="flex items-center space-x-2 text-slate-700">
                     <Icons.Mail className="w-4 h-4 text-brand-gold" />
-                    <a href="mailto:contact@ipakadvisory.ca" className="hover:text-brand-navy underline-offset-4 hover:underline">
-                      contact@ipakadvisory.ca
+                    <a href="mailto:info@ipakservices.com" className="hover:text-brand-navy underline-offset-4 hover:underline">
+                      info@ipakservices.com
                     </a>
                   </p>
                   <p className="flex items-center space-x-2 text-slate-700">
@@ -1071,11 +1093,11 @@
 
             <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
               <p className="font-semibold text-slate-800">
-                IPAK Business Advisory &bull; Vancouver, British Columbia, Canada
+                IPAK Business Consulting &bull; Vancouver, British Columbia, Canada
               </p>
               <h4 className="font-semibold text-slate-900 pt-2">1. Privacy Protection</h4>
               <p>
-                IPAK Business Advisory adheres to the Personal Information Protection Act (PIPA) of British Columbia and the federal Personal Information Protection and Electronic Documents Act (PIPEDA) of Canada.
+                IPAK Business Consulting adheres to the Personal Information Protection Act (PIPA) of British Columbia and the federal Personal Information Protection and Electronic Documents Act (PIPEDA) of Canada.
               </p>
               <h4 className="font-semibold text-slate-900 pt-2">2. Confidentiality of Business Data</h4>
               <p>
@@ -1083,7 +1105,7 @@
               </p>
               <h4 className="font-semibold text-slate-900 pt-2">3. Contact</h4>
               <p>
-                Questions regarding our privacy practices can be directed to <a href="mailto:privacy@ipakadvisory.ca" className="text-brand-navy underline">privacy@ipakadvisory.ca</a>.
+                Questions regarding our privacy practices can be directed to <a href="mailto:info@ipakservices.com" className="text-brand-navy underline">info@ipakservices.com</a>.
               </p>
             </div>
 
@@ -1117,7 +1139,7 @@
                     IP
                   </div>
                   <span className="font-bold tracking-tight text-white text-lg font-sans">
-                    IPAK <span className="font-light text-slate-400">Business Advisory</span>
+                    IPAK <span className="font-light text-slate-400">Business Consulting</span>
                   </span>
                 </div>
 
@@ -1154,11 +1176,11 @@
                   Contact
                 </h4>
                 <div className="space-y-3 text-sm text-slate-300">
-                  <a href="mailto:contact@ipakadvisory.ca" className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group">
+                  <a href="mailto:info@ipakservices.com" className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group">
                     <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-brand-gold/40">
                       <Icons.Mail className="w-4 h-4 text-brand-gold" />
                     </div>
-                    <span>Email: contact@ipakadvisory.ca</span>
+                    <span>Email: info@ipakservices.com</span>
                   </a>
 
                   <a href="tel:+16045550199" className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group">
@@ -1172,7 +1194,7 @@
                     <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-brand-gold/40">
                       <Icons.Linkedin className="w-4 h-4 text-brand-gold" />
                     </div>
-                    <span>LinkedIn: IPAK Business Advisory</span>
+                    <span>LinkedIn: IPAK Business Consulting</span>
                   </a>
                 </div>
               </div>
@@ -1182,7 +1204,7 @@
             {/* Bottom Bar */}
             <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
               <p>
-                &copy; {new Date().getFullYear()} IPAK Business Advisory. All rights reserved.
+                &copy; {new Date().getFullYear()} IPAK Business Consulting. All rights reserved.
               </p>
 
               <div className="flex items-center space-x-6">

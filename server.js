@@ -60,5 +60,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`\n🚀 IPAK Business Advisory React App is running at:\n   ➜ Local:   http://localhost:${PORT}/\n`);
+  console.log(`\n🚀 IPAK Business Consulting React App is running at:\n   ➜ Local:   http://localhost:${PORT}/\n`);
 });

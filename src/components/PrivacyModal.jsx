@@ -25,12 +25,12 @@ export default function PrivacyModal({ isOpen, onClose }) {
 
         <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
           <p className="font-semibold text-slate-800">
-            Effective Date: November 2026 | IPAK Business Advisory (Vancouver, BC, Canada)
+            Effective Date: November 2026 | IPAK Business Consulting (Vancouver, BC, Canada)
           </p>
 
           <h4 className="font-semibold text-slate-900 pt-2">1. Commitment to Privacy</h4>
           <p>
-            IPAK Business Advisory is dedicated to safeguarding the privacy and confidentiality of our clients, prospective partners, and website visitors. We adhere to the Personal Information Protection Act (PIPA) of British Columbia and the federal Personal Information Protection and Electronic Documents Act (PIPEDA) of Canada.
+            IPAK Business Consulting is dedicated to safeguarding the privacy and confidentiality of our clients, prospective partners, and website visitors. We adhere to the Personal Information Protection Act (PIPA) of British Columbia and the federal Personal Information Protection and Electronic Documents Act (PIPEDA) of Canada.
           </p>
 
           <h4 className="font-semibold text-slate-900 pt-2">2. Information Collection</h4>
@@ -45,7 +45,7 @@ export default function PrivacyModal({ isOpen, onClose }) {
 
           <h4 className="font-semibold text-slate-900 pt-2">4. Contact & Inquiries</h4>
           <p>
-            For any inquiries regarding our privacy standards or to request data removal, please contact our privacy officer at <a href="mailto:privacy@ipakadvisory.ca" className="text-brand-navy underline">privacy@ipakadvisory.ca</a>.
+            For any inquiries regarding our privacy standards or to request data removal, please contact our privacy officer at <a href="mailto:info@ipakservices.com" className="text-brand-navy underline">info@ipakservices.com</a>.
           </p>
         </div>
 

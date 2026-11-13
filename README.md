@@ -1,8 +1,8 @@
-# IPAK Business Advisory
+# IPAK Business Consulting
 
 > **Strategy. Funding. Growth.**
 
-A refined, minimalist web application for **IPAK Business Advisory**, based in Vancouver, British Columbia, and supporting founders, entrepreneurs, SMEs, family businesses, and established enterprises across Canada.
+A refined, minimalist web application for **IPAK Business Consulting**, based in Vancouver, British Columbia, and supporting founders, entrepreneurs, SMEs, family businesses, and established enterprises across Canada.
 
 Led by **Dr Maryam Khodaviren** (Business Consultant, ICF-Qualified Leadership Coach, PhD in Business Management from the United Kingdom).
 
@@ -37,7 +37,7 @@ Led by **Dr Maryam Khodaviren** (Business Consultant, ICF-Qualified Leadership C
    - Confidentiality & direct principal review assurance
 
 6. **Footer & Legal**
-   - Direct contact info (`contact@ipakadvisory.ca`, Vancouver BC, LinkedIn)
+   - Direct contact info (`info@ipakservices.com`, Vancouver BC, LinkedIn)
    - Interactive British Columbia & Canadian Privacy Policy (PIPA & PIPEDA compliant)
 
 ---
@@ -74,4 +74,4 @@ npm run preview
 
 ---
 
-© 2026 IPAK Business Advisory. All rights reserved.
+© 2026 IPAK Business Consulting. All rights reserved.

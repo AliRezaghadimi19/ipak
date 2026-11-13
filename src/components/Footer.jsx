@@ -20,7 +20,7 @@ export default function Footer({ onOpenPrivacy }) {
                 IP
               </div>
               <span className="font-bold tracking-tight text-white text-lg font-sans">
-                IPAK <span className="font-light text-slate-400">Business Advisory</span>
+                IPAK <span className="font-light text-slate-400">Business Consulting</span>
               </span>
             </div>
 
@@ -75,13 +75,13 @@ export default function Footer({ onOpenPrivacy }) {
             
             <div className="space-y-3 text-sm text-slate-300">
               <a
-                href="mailto:contact@ipakadvisory.ca"
+                href="mailto:info@ipakservices.com"
                 className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group"
               >
                 <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-brand-gold/40">
                   <Mail className="w-4 h-4 text-brand-gold" />
                 </div>
-                <span>contact@ipakadvisory.ca</span>
+                <span>info@ipakservices.com</span>
               </a>
 
               <a
@@ -113,7 +113,7 @@ export default function Footer({ onOpenPrivacy }) {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>
-            &copy; {new Date().getFullYear()} IPAK Business Advisory. All rights reserved.
+            &copy; {new Date().getFullYear()} IPAK Business Consulting. All rights reserved.
           </p>
 
           <div className="flex items-center space-x-6">
