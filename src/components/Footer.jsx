@@ -15,10 +15,12 @@ export default function Footer({ onOpenPrivacy }) {
           
           {/* Brand Info */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-serif font-bold text-base tracking-wider border border-brand-gold/40">
-                IP
-              </div>
+            <div className="flex items-center space-x-3.5">
+              <img
+                src="/logo-white.png"
+                alt="IPAK Business Consulting Logo"
+                className="h-11 w-11 object-contain"
+              />
               <span className="font-bold tracking-tight text-white text-lg font-sans">
                 IPAK <span className="font-light text-slate-400">Business Consulting</span>
               </span>

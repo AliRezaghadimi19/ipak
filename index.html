@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IPAK Business Consulting | Strategy. Funding. Growth.</title>
   <meta name="description" content="IPAK Business Consulting - Practical, commercially focused business consulting, SR&ED & grant support, leadership coaching by Dr Maryam Khodaviren. Based in Vancouver, supporting businesses across Canada." />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230F1E36'/><text x='50%' y='58%' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-size='42' font-weight='700' fill='%23B89246'>IP</text></svg>" />
+  <link rel="icon" type="image/png" href="./logo.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -181,32 +181,12 @@
         }`}>
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
             {/* Logo */}
-            <a href="#" className="group flex items-center space-x-3">
+            <a href="#" className="group flex items-center space-x-3.5">
               <img
-                src="./logo.svg"
-                alt="IPAK Business Consulting"
-                className="h-10 w-auto object-contain hidden"
-                id="brand-logo-img"
-                onLoad={(e) => {
-                  e.target.classList.remove('hidden');
-                  const fb = document.getElementById('brand-logo-fallback');
-                  if (fb) fb.classList.add('hidden');
-                }}
-                onError={(e) => {
-                  // Try logo.png if logo.svg is not found
-                  if (!e.target.dataset.triedPng) {
-                    e.target.dataset.triedPng = 'true';
-                    e.target.src = './logo.png';
-                  } else {
-                    e.target.classList.add('hidden');
-                    const fb = document.getElementById('brand-logo-fallback');
-                    if (fb) fb.classList.remove('hidden');
-                  }
-                }}
+                src="./logo.png"
+                alt="IPAK Business Consulting Logo"
+                className="h-11 w-11 object-contain transition-transform group-hover:scale-105"
               />
-              <div id="brand-logo-fallback" className="w-10 h-10 rounded-lg bg-brand-navy flex items-center justify-center text-white font-serif font-bold text-lg tracking-wider shadow-sm transition-transform group-hover:scale-105 border border-brand-gold/30">
-                IP
-              </div>
               <div className="flex flex-col">
                 <span className="font-bold tracking-tight text-slate-900 text-lg leading-tight uppercase font-sans">
                   IPAK
@@ -1134,10 +1114,12 @@
               
               {/* Brand Col */}
               <div className="lg:col-span-5 space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-serif font-bold text-base tracking-wider border border-brand-gold/40">
-                    IP
-                  </div>
+                <div className="flex items-center space-x-3.5">
+                  <img
+                    src="./logo-white.png"
+                    alt="IPAK Business Consulting Logo"
+                    className="h-11 w-11 object-contain"
+                  />
                   <span className="font-bold tracking-tight text-white text-lg font-sans">
                     IPAK <span className="font-light text-slate-400">Business Consulting</span>
                   </span>

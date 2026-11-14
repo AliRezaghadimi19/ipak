@@ -30,10 +30,12 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
         {/* Brand Logo */}
-        <a href="#" className="group flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-lg bg-brand-navy flex items-center justify-center text-white font-serif font-bold text-lg tracking-wider shadow-sm transition-transform group-hover:scale-105 border border-brand-gold/30">
-            IP
-          </div>
+        <a href="#" className="group flex items-center space-x-3.5">
+          <img
+            src="/logo.png"
+            alt="IPAK Business Consulting Logo"
+            className="h-11 w-11 object-contain transition-transform group-hover:scale-105"
+          />
           <div className="flex flex-col">
             <span className="font-bold tracking-tight text-slate-900 text-lg leading-tight uppercase font-sans">
               IPAK
