@@ -87,13 +87,13 @@ export default function Footer({ onOpenPrivacy }) {
               </a>
 
               <a
-                href="tel:+16045550199"
+                href="tel:+16047359199"
                 className="flex items-center space-x-3 text-slate-300 hover:text-brand-gold transition-colors group"
               >
                 <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-brand-gold/40">
                   <Phone className="w-4 h-4 text-brand-gold" />
                 </div>
-                <span>+1 (604) 555-0199</span>
+                <span>+1 (604) 735-9199</span>
               </a>
 
               <a

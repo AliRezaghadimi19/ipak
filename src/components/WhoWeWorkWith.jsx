@@ -36,7 +36,7 @@ export default function WhoWeWorkWith() {
   ];
 
   return (
-    <section id="clients" className="py-24 bg-white border-t border-slate-100">
+    <section id="clients" className="py-24 bg-brand-warm-gray border-t border-brand-navy/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
@@ -44,7 +44,7 @@ export default function WhoWeWorkWith() {
           <p className="text-xs uppercase tracking-[0.2em] font-semibold text-brand-gold mb-3">
             Who We Work With
           </p>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-950 tracking-tight leading-snug">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-brand-navy tracking-tight leading-snug">
             Partnering with leaders across every stage of commercial maturity.
           </h2>
           <p className="mt-4 text-slate-600 text-base leading-relaxed">
@@ -59,12 +59,12 @@ export default function WhoWeWorkWith() {
             return (
               <div
                 key={idx}
-                className="p-7 rounded-2xl border border-slate-200/80 bg-slate-50/40 hover:bg-white hover:border-brand-gold/60 hover:shadow-md transition-all duration-300 group"
+                className="p-7 rounded-2xl border border-brand-navy/10 bg-white hover:border-brand-navy/35 hover:shadow-lg transition-all duration-300 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-brand-navy mb-5 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors shadow-xs">
+                <div className="w-11 h-11 rounded-xl bg-brand-navy-subtle border border-brand-navy/15 flex items-center justify-center text-brand-navy mb-5 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors shadow-xs">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-serif font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-serif font-bold text-brand-navy mb-2">
                   {client.title}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -76,12 +76,12 @@ export default function WhoWeWorkWith() {
         </div>
 
         {/* Canadian Geographic Reach Card */}
-        <div className="rounded-3xl bg-gradient-to-r from-brand-navy via-slate-900 to-brand-navy text-white p-8 sm:p-12 border border-slate-800 shadow-md relative overflow-hidden">
+        <div className="rounded-3xl bg-gradient-to-r from-brand-navy via-brand-navy-surface to-brand-navy text-white p-8 sm:p-12 border border-brand-gold/30 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 text-brand-gold text-xs font-semibold uppercase tracking-wider border border-white/10">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 text-brand-gold text-xs font-semibold uppercase tracking-wider border border-white/15">
                 <MapPin className="w-3.5 h-3.5" />
                 <span>Vancouver &bull; Pan-Canadian Reach</span>
               </div>
@@ -90,7 +90,7 @@ export default function WhoWeWorkWith() {
                 Based in Vancouver and supporting businesses across Canada.
               </h3>
 
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+              <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl">
                 While headquartered on Canada's Pacific coast in Vancouver, British Columbia, we deliver advisory and grant support nationwide. We understand regional and federal economic programs—from Western Economic Diversification to federal SR&ED tax incentives.
               </p>
 
@@ -113,10 +113,10 @@ export default function WhoWeWorkWith() {
             <div className="lg:col-span-4 lg:text-right">
               <a
                 href="#consultation"
-                className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-white text-slate-900 text-xs font-semibold uppercase tracking-wider hover:bg-brand-gold hover:text-slate-950 transition-all shadow-md group"
+                className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-brand-gold text-brand-navy-dark text-xs font-semibold uppercase tracking-wider hover:bg-brand-gold-light active:scale-95 transition-all shadow-md group"
               >
                 <span>Book a Consultation</span>
-                <Compass className="w-4 h-4 text-brand-navy group-hover:rotate-45 transition-transform" />
+                <Compass className="w-4 h-4 text-brand-navy-dark group-hover:rotate-45 transition-transform" />
               </a>
             </div>
           </div>

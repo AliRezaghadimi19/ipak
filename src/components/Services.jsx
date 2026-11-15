@@ -9,7 +9,7 @@ export default function Services() {
       title: 'SR&ED & Grant Support',
       icon: DollarSign,
       description:
-        'Unlock vital non-dilutive government funding. We guide you through Canada’s Scientific Research & Experimental Development (SR&ED) tax incentive and provincial grant programs with meticulous technical and financial preparation.',
+        'Maximize non-dilutive government funding. We guide you through Canada’s Scientific Research & Experimental Development (SR&ED) tax incentive and provincial grant programs with meticulous technical and financial preparation.',
       deliverables: [
         'SR&ED eligibility assessment & claim structuring',
         'Federal & provincial innovation grant applications',
@@ -76,21 +76,26 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-slate-50/50 border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="services" className="py-24 bg-brand-navy text-white relative overflow-hidden">
+      {/* Subtle geometric light accents */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-navy-light/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <p className="text-xs uppercase tracking-[0.2em] font-semibold text-brand-gold mb-3">
-              Our Core Services
+              Our Services
             </p>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-slate-950 tracking-tight">
-              Specialized advisory tailored for measurable impact.
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight">
+              Five core disciplines for enduring commercial success.
             </h2>
           </div>
-          <p className="text-sm text-slate-500 max-w-sm">
-            Five core disciplines designed to support your enterprise across every stage of the business lifecycle.
+          <p className="text-sm text-slate-300 max-w-sm">
+            Comprehensively addressing funding, strategy, operations, and human leadership across Canada.
           </p>
         </div>
 
@@ -98,42 +103,42 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
-            const isFeatured = index === 0; // SR&ED highlighted subtly
+            const isFeatured = index === 0;
 
             return (
               <div
                 key={service.id}
-                className={`group relative bg-white rounded-2xl p-8 border transition-all duration-300 hover:shadow-lg flex flex-col justify-between ${
+                className={`group rounded-2xl p-8 border transition-all duration-300 hover:shadow-2xl flex flex-col justify-between ${
                   isFeatured
-                    ? 'border-brand-gold/60 shadow-xs'
-                    : 'border-slate-200/80 hover:border-slate-300'
+                    ? 'bg-brand-navy-surface/90 border-brand-gold/60 shadow-lg'
+                    : 'bg-brand-navy-surface/60 hover:bg-brand-navy-surface border-white/10 hover:border-brand-gold/40'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-navy group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-navy transition-colors">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="font-serif text-slate-300 text-lg font-bold group-hover:text-brand-gold transition-colors">
+                    <span className="font-serif text-slate-400 group-hover:text-brand-gold text-lg font-bold transition-colors">
                       {service.number}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-serif font-bold text-slate-900 mb-3 group-hover:text-brand-navy">
+                  <h3 className="text-xl font-serif font-bold text-white mb-3 group-hover:text-brand-gold transition-colors">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                  <p className="text-sm text-slate-200 leading-relaxed mb-6">
                     {service.description}
                   </p>
 
-                  <div className="space-y-2 border-t border-slate-100 pt-4 mb-6">
-                    <p className="text-[11px] uppercase tracking-wider font-semibold text-slate-400">
+                  <div className="space-y-2 border-t border-white/10 pt-4 mb-6">
+                    <p className="text-[11px] uppercase tracking-wider font-semibold text-slate-300">
                       Key Capabilities:
                     </p>
                     <ul className="space-y-1.5">
                       {service.deliverables.map((item, i) => (
-                        <li key={i} className="text-xs text-slate-600 flex items-start space-x-2">
+                        <li key={i} className="text-xs text-slate-300 flex items-start space-x-2">
                           <span className="text-brand-gold font-bold mr-1">•</span>
                           <span>{item}</span>
                         </li>
@@ -145,10 +150,9 @@ export default function Services() {
                 <div className="pt-2">
                   <a
                     href="#consultation"
-                    className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-slate-800 hover:text-brand-gold group-hover:translate-x-1 transition-all"
+                    className="inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-wider text-slate-200 hover:text-brand-gold group-hover:translate-x-1 transition-all"
                   >
-                    <span>Inquire About This Service</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-brand-gold" />
+                    <span>Inquire About This Service &rarr;</span>
                   </a>
                 </div>
               </div>
@@ -156,27 +160,27 @@ export default function Services() {
           })}
 
           {/* Quick CTA Card to fill the 6th slot in 3x2 grid */}
-          <div className="bg-brand-navy text-white rounded-2xl p-8 border border-slate-800 flex flex-col justify-between shadow-sm relative overflow-hidden">
-            <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-brand-gold/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="bg-gradient-to-br from-brand-navy-dark via-brand-navy-surface to-brand-navy text-white rounded-2xl p-8 border border-brand-gold/40 flex flex-col justify-between shadow-xl relative overflow-hidden">
+            <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-brand-gold/15 rounded-full blur-2xl pointer-events-none" />
 
-            <div className="space-y-4">
+            <div className="space-y-4 relative">
               <span className="text-xs uppercase tracking-widest font-semibold text-brand-gold">
-                Custom Advisory
+                Strategic Synergy
               </span>
               <h3 className="text-2xl font-serif font-bold leading-snug">
-                Have a multifaceted business challenge?
+                Unsure which service best fits your stage?
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Many clients combine grant support with commercial expansion and executive coaching. We design integrated engagements matching your immediate milestones.
+                Most clients integrate grant funding alongside business development and leadership coaching. Let's design a customized roadmap matching your immediate milestones.
               </p>
             </div>
 
-            <div className="pt-8">
+            <div className="pt-8 relative">
               <a
                 href="#consultation"
-                className="w-full inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-brand-gold text-slate-950 font-semibold text-xs uppercase tracking-wider hover:bg-brand-gold-light transition-all shadow"
+                className="w-full inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-brand-gold text-brand-navy-dark font-semibold text-xs uppercase tracking-wider hover:bg-brand-gold-light transition-all shadow-md"
               >
-                <span>Schedule a Confidential Call</span>
+                <span>Schedule an Evaluation</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
