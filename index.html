@@ -936,8 +936,11 @@
         setFormData((prev) => ({ ...prev, [name]: value }));
       };
 
-      const handleSubmit = (e) => {
+      const [submitError, setSubmitError] = useState('');
+
+      const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitError('');
 
         // 1. Invisible Honeypot check for bots
         if (formData.bot_field) {
@@ -948,18 +951,31 @@
         // 2. CAPTCHA verification
         const expected = captcha.num1 + captcha.num2;
         if (parseInt(captchaInput.trim(), 10) !== expected) {
-          setCaptchaError('Incorrect security calculation. Please calculate again.');
           generateCaptcha();
+          setCaptchaError('Incorrect security calculation. Please calculate again.');
           return;
         }
 
         setCaptchaError('');
         setIsSubmitting(true);
-        setTimeout(() => {
-          setIsSubmitting(false);
+        try {
+          const { bot_field, ...fields } = formData;
+          const res = await fetch('contact.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...fields, website: bot_field }),
+          });
+          const result = await res.json().catch(() => ({}));
+          if (!res.ok || !result.ok) {
+            throw new Error(result.error || 'We could not send your enquiry. Please email us directly at info@ipakservices.com.');
+          }
           setIsSubmitted(true);
           generateCaptcha();
-        }, 600);
+        } catch (err) {
+          setSubmitError(err.message || 'We could not send your enquiry. Please email us directly at info@ipakservices.com.');
+        } finally {
+          setIsSubmitting(false);
+        }
       };
 
       return (
@@ -1234,6 +1250,12 @@
                           </p>
                         )}
                       </div>
+
+                      {submitError && (
+                        <div role="alert" className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                          {submitError}
+                        </div>
+                      )}
 
                       {/* Send Enquiry Button */}
                       <div className="pt-2">

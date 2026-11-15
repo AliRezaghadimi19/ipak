@@ -63,8 +63,8 @@ export default function ConsultationForm() {
     // 2. CAPTCHA verification
     const expected = captcha.num1 + captcha.num2;
     if (parseInt(captchaInput.trim(), 10) !== expected) {
-      setCaptchaError('Incorrect security calculation. Please calculate again.');
       generateCaptcha();
+      setCaptchaError('Incorrect security calculation. Please calculate again.');
       return;
     }
 
