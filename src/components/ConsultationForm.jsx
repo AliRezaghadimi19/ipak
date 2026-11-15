@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Send, CheckCircle2, Clock, Phone, Mail, MapPin, Sparkles, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Send, CheckCircle2, Clock, Phone, Mail, MapPin, Sparkles, ArrowRight, ShieldCheck, RefreshCw } from 'lucide-react';
 
 export default function ConsultationForm() {
   const [formData, setFormData] = useState({
@@ -9,10 +9,27 @@ export default function ConsultationForm() {
     phone: '',
     topic: 'Funding & SR&ED Grants',
     message: '',
+    bot_field: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [captcha, setCaptcha] = useState({ num1: 4, num2: 7 });
+  const [captchaInput, setCaptchaInput] = useState('');
+  const [captchaError, setCaptchaError] = useState('');
+
+  const generateCaptcha = () => {
+    const n1 = Math.floor(Math.random() * 8) + 2;
+    const n2 = Math.floor(Math.random() * 8) + 1;
+    setCaptcha({ num1: n1, num2: n2 });
+    setCaptchaInput('');
+    setCaptchaError('');
+  };
+
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
 
   const topics = [
     'Funding & SR&ED Grants',
@@ -25,17 +42,40 @@ export default function ConsultationForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'phone') {
+      // Only allow numeric digits (0-9)
+      const numericValue = value.replace(/\D/g, '');
+      setFormData((prev) => ({ ...prev, [name]: numericValue }));
+      return;
+    }
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // 1. Honeypot check for bots
+    if (formData.bot_field) {
+      console.warn('Bot detected via honeypot.');
+      return;
+    }
+
+    // 2. CAPTCHA verification
+    const expected = captcha.num1 + captcha.num2;
+    if (parseInt(captchaInput.trim(), 10) !== expected) {
+      setCaptchaError('Incorrect security calculation. Please calculate again.');
+      generateCaptcha();
+      return;
+    }
+
+    setCaptchaError('');
     setIsSubmitting(true);
 
     // Simulate submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
+      generateCaptcha();
     }, 600);
   };
 
@@ -47,8 +87,10 @@ export default function ConsultationForm() {
       phone: '',
       topic: 'Funding & SR&ED Grants',
       message: '',
+      bot_field: '',
     });
     setIsSubmitted(false);
+    generateCaptcha();
   };
 
   return (
@@ -174,19 +216,18 @@ export default function ConsultationForm() {
                     />
                   </div>
 
-                  {/* Business Name */}
+                  {/* Business Name (Optional) */}
                   <div>
                     <label htmlFor="businessName" className="block text-xs font-semibold uppercase tracking-wider text-brand-navy mb-1.5">
-                      Business Name <span className="text-brand-gold">*</span>
+                      Business Name <span className="text-slate-400 font-normal lowercase">(optional)</span>
                     </label>
                     <input
                       type="text"
                       id="businessName"
                       name="businessName"
-                      required
                       value={formData.businessName}
                       onChange={handleChange}
-                      placeholder="Company or venture name"
+                      placeholder="Company or venture name (optional)"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/15 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
                     />
                   </div>
@@ -202,6 +243,8 @@ export default function ConsultationForm() {
                         id="email"
                         name="email"
                         required
+                        pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+                        title="Please enter a valid email address (e.g. name@domain.com)"
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="you@company.ca"
@@ -218,9 +261,12 @@ export default function ConsultationForm() {
                         id="phone"
                         name="phone"
                         required
+                        inputMode="numeric"
+                        pattern="[0-9]{7,15}"
+                        title="Please enter numbers only (7 to 15 digits)"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+1 (604) 000-0000"
+                        placeholder="e.g. 6047359199"
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/15 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
                       />
                     </div>
@@ -260,6 +306,64 @@ export default function ConsultationForm() {
                       placeholder="Tell us about your timing, funding objectives, or leadership focus..."
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/15 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none resize-none"
                     />
+                  </div>
+
+                  {/* Honeypot field for anti-bot spam */}
+                  <div style={{ display: 'none' }} aria-hidden="true">
+                    <input
+                      type="text"
+                      name="bot_field"
+                      tabIndex={-1}
+                      value={formData.bot_field || ''}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  {/* Anti-Spam Security Verification (CAPTCHA) */}
+                  <div className="p-4 rounded-2xl bg-brand-navy-subtle/80 border border-brand-navy/15 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="captchaAnswer" className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-brand-navy">
+                        <ShieldCheck className="w-4 h-4 text-brand-gold shrink-0" />
+                        <span>Security Verification <span className="text-brand-gold">*</span></span>
+                      </label>
+                      <button
+                        type="button"
+                        onClick={generateCaptcha}
+                        title="Generate new challenge"
+                        className="inline-flex items-center space-x-1 text-[11px] text-slate-500 hover:text-brand-navy transition-colors cursor-pointer"
+                      >
+                        <RefreshCw className="w-3 h-3 text-brand-gold" />
+                        <span>New code</span>
+                      </button>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <div className="px-4 py-2.5 rounded-xl bg-white border border-brand-navy/20 font-mono font-bold text-brand-navy tracking-wider text-base shadow-2xs select-none">
+                        {captcha.num1} + {captcha.num2} = ?
+                      </div>
+                      <input
+                        type="text"
+                        id="captchaAnswer"
+                        name="captchaAnswer"
+                        required
+                        inputMode="numeric"
+                        value={captchaInput}
+                        onChange={(e) => {
+                          setCaptchaInput(e.target.value);
+                          if (captchaError) setCaptchaError('');
+                        }}
+                        placeholder="Your answer"
+                        className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/15 text-sm text-slate-800 placeholder-slate-400 bg-white transition-all outline-none"
+                      />
+                    </div>
+
+                    {captchaError && (
+                      <p className="text-xs text-rose-600 flex items-center space-x-1 font-medium">
+                        <span>&bull;</span>
+                        <span>{captchaError}</span>
+                      </p>
+                    )}
                   </div>
 
                   {/* Submit Button */}
