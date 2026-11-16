@@ -66,10 +66,14 @@ export default function About() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-navy/5 rounded-bl-full pointer-events-none" />
 
               <div className="space-y-6 relative">
-                {/* Avatar / Monogram Badge */}
+                {/* Avatar / Photo */}
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 rounded-full bg-brand-navy text-white flex items-center justify-center font-serif text-2xl font-bold shadow-sm border-2 border-brand-gold">
-                    MK
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden shadow-md border-2 border-brand-gold shrink-0 bg-brand-navy">
+                    <img
+                      src="/maryam-khodaviren.jpg"
+                      alt="Dr Maryam Khodaviren"
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                   <div>
                     <h3 className="text-2xl font-serif font-bold text-brand-navy leading-tight">
@@ -93,7 +97,7 @@ export default function About() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-brand-navy">Business Consultant</p>
-                      <p className="text-xs text-slate-600">Commercially focused advisory for SMEs, founders, and enterprise transitions.</p>
+                      <p className="text-xs text-slate-600">Commercially focused advisory for SMEs, founders, and business growth and transformation.</p>
                     </div>
                   </div>
 
@@ -113,7 +117,7 @@ export default function About() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-brand-navy">PhD in Business Management</p>
-                      <p className="text-xs text-slate-600">Doctorate awarded from the United Kingdom.</p>
+                      <p className="text-xs text-slate-600">UK-awarded doctorate.</p>
                     </div>
                   </div>
                 </div>

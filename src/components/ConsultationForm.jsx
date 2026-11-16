@@ -162,7 +162,7 @@ export default function ConsultationForm() {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-brand-navy/15 shadow-md relative">
+            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-brand-navy/15 shadow-md relative">
               
               {isSubmitted ? (
                 <div className="text-center py-12 space-y-6 animate-in fade-in zoom-in-95 duration-300">
@@ -321,8 +321,8 @@ export default function ConsultationForm() {
                   </div>
 
                   {/* Anti-Spam Security Verification (CAPTCHA) */}
-                  <div className="p-4 rounded-2xl bg-brand-navy-subtle/80 border border-brand-navy/15 space-y-2.5">
-                    <div className="flex items-center justify-between">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-brand-navy-subtle/80 border border-brand-navy/15 space-y-2.5">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
                       <label htmlFor="captchaAnswer" className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-brand-navy">
                         <ShieldCheck className="w-4 h-4 text-brand-gold shrink-0" />
                         <span>Security Verification <span className="text-brand-gold">*</span></span>
@@ -331,31 +331,33 @@ export default function ConsultationForm() {
                         type="button"
                         onClick={generateCaptcha}
                         title="Generate new challenge"
-                        className="inline-flex items-center space-x-1 text-[11px] text-slate-500 hover:text-brand-navy transition-colors cursor-pointer"
+                        className="inline-flex items-center space-x-1 text-[11px] text-slate-500 hover:text-brand-navy transition-colors cursor-pointer py-0.5"
                       >
                         <RefreshCw className="w-3 h-3 text-brand-gold" />
                         <span>New code</span>
                       </button>
                     </div>
 
-                    <div className="flex items-center space-x-3">
-                      <div className="px-4 py-2.5 rounded-xl bg-white border border-brand-navy/20 font-mono font-bold text-brand-navy tracking-wider text-base shadow-2xs select-none">
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3 items-stretch">
+                      <div className="sm:col-span-5 flex items-center justify-center px-4 py-2.5 rounded-xl bg-white border border-brand-navy/20 font-mono font-bold text-brand-navy tracking-wider text-base shadow-2xs select-none text-center">
                         {captcha.num1} + {captcha.num2} = ?
                       </div>
-                      <input
-                        type="text"
-                        id="captchaAnswer"
-                        name="captchaAnswer"
-                        required
-                        inputMode="numeric"
-                        value={captchaInput}
-                        onChange={(e) => {
-                          setCaptchaInput(e.target.value);
-                          if (captchaError) setCaptchaError('');
-                        }}
-                        placeholder="Your answer"
-                        className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/15 text-sm text-slate-800 placeholder-slate-400 bg-white transition-all outline-none"
-                      />
+                      <div className="sm:col-span-7 flex">
+                        <input
+                          type="text"
+                          id="captchaAnswer"
+                          name="captchaAnswer"
+                          required
+                          inputMode="numeric"
+                          value={captchaInput}
+                          onChange={(e) => {
+                            setCaptchaInput(e.target.value);
+                            if (captchaError) setCaptchaError('');
+                          }}
+                          placeholder="Enter answer"
+                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/15 text-sm text-slate-800 placeholder-slate-400 bg-white transition-all outline-none"
+                        />
+                      </div>
                     </div>
 
                     {captchaError && (
