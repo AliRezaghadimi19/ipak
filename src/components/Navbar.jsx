@@ -17,6 +17,7 @@ export default function Navbar() {
     { name: 'About Us', href: '#about' },
     { name: 'Services', href: '#services' },
     { name: 'Who We Work With', href: '#clients' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Book a Consultation', href: '#consultation' },
   ];
 

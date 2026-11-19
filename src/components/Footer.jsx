@@ -62,6 +62,11 @@ export default function Footer({ onOpenPrivacy }) {
                 </a>
               </li>
               <li>
+                <a href="#faq" className="hover:text-brand-gold transition-colors">
+                  Frequently Asked Questions
+                </a>
+              </li>
+              <li>
                 <a href="#consultation" className="hover:text-brand-gold transition-colors">
                   Book a Consultation
                 </a>
