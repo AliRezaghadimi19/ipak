@@ -67,8 +67,8 @@ export default function About() {
 
               <div className="space-y-6 relative">
                 {/* Avatar / Photo */}
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden shadow-md border-2 border-brand-gold shrink-0 bg-brand-navy">
+                <div className="flex items-center space-x-5">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden shadow-lg border-2 border-brand-gold shrink-0 bg-brand-navy">
                     <img
                       src="/maryam-khodaviren.jpg"
                       alt="Dr Maryam Khodaviren"
@@ -76,11 +76,11 @@ export default function About() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-serif font-bold text-brand-navy leading-tight">
+                    <h3 className="text-2xl sm:text-3xl font-serif font-bold text-brand-navy leading-tight">
                       Dr Maryam Khodaviren
                     </h3>
-                    <p className="text-xs uppercase tracking-wider text-brand-gold font-semibold mt-0.5">
-                      Principal Consultant & Coach
+                    <p className="text-xs sm:text-sm uppercase tracking-wider text-brand-gold font-semibold mt-1">
+                      Business Consultant and Coach
                     </p>
                   </div>
                 </div>

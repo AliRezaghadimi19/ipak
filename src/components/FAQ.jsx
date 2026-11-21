@@ -6,91 +6,83 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: "What specific services does IPAK Business Consulting provide?",
-      answer: (
-        <div className="space-y-3">
-          <p>
-            IPAK provides specialized advisory solutions designed around three integrated strategic pillars:
-          </p>
-          <ul className="space-y-2 pl-1">
-            <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0" />
-              <span><strong className="text-brand-navy">Business Strategy & Commercial Growth:</strong> Market entry, corporate turnaround, operational restructuring, financial forecasting, and scaling roadmaps.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0" />
-              <span><strong className="text-brand-navy">SR&ED & Non-Dilutive Government Grants:</strong> Full lifecycle management of Canadian innovation tax credits (SR&ED), federal grants (IRAP, CanExport), and provincial tech incentives.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0" />
-              <span><strong className="text-brand-navy">Executive & Leadership Coaching:</strong> ICF-accredited leadership coaching led by Dr Maryam Khodaviren, focusing on executive presence, C-suite alignment, and high-performance organizational culture.</span>
-            </li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      question: "How does IPAK assist Canadian businesses with SR&ED and government grant programs?",
+      question: "What services does IPAK offer?",
       answer: (
         <p>
-          We deliver end-to-end non-dilutive capital advisory. Our team identifies qualifying scientific research and experimental development (SR&ED) expenditures, crafts rigorous technical reports matching CRA benchmarks, compiles necessary financial and payroll documentation, and supports you throughout the submission and review process. Our goal is to maximize your eligible tax refunds while minimizing time investment from your internal technical and accounting teams.
+          IPAK is committed to helping clients find solutions that meet their individual needs. Explore our services or contact our team to learn how we can support you.
         </p>
       )
     },
     {
-      question: "Do we need to be located in Vancouver to work with IPAK?",
+      question: "How do I know which service is right for me?",
       answer: (
         <p>
-          No. While IPAK is headquartered in Vancouver, British Columbia, we partner with innovative startups, established SMEs, and commercial enterprises across all Canadian provinces—including British Columbia, Alberta, Ontario, Quebec, and Atlantic Canada. Engagements are delivered seamlessly through secure digital collaboration, with on-site executive sessions and workshops arranged as required.
+          Every client has different needs and goals. Our team can discuss your requirements and help you identify the most suitable options.
         </p>
       )
     },
     {
-      question: "Who is the ideal client for your advisory services?",
+      question: "How can I get started with IPAK?",
       answer: (
         <p>
-          We partner with ambitious business owners, startup founders, CEOs, and executive leadership teams across various industries—from technology and advanced manufacturing to professional services. Our clients are typically scaling operations, commercializing new innovations, seeking government grant funding, or navigating complex strategic transitions that demand experienced, objective leadership guidance.
+          Getting started is simple. Contact us through our website, tell us what you need, and our team will guide you through the next steps.
         </p>
       )
     },
     {
-      question: "How are consulting and executive coaching engagements structured and priced?",
+      question: "Do I need any previous experience or knowledge to use your services?",
       answer: (
         <p>
-          We structure engagements based on client goals and operational models. Options include project-based strategic scopes, milestone-based grant preparation, retained monthly advisory for ongoing executive guidance, and structured one-on-one leadership coaching packages. During our initial confidential consultation, we assess your requirements and propose a clear, transparent engagement structure tailored to your objectives.
+          Not necessarily. We aim to explain each process clearly so you can understand your options and make informed decisions.
         </p>
       )
     },
     {
-      question: "How do you protect confidentiality and sensitive business information?",
+      question: "How much do IPAK’s services cost?",
       answer: (
         <p>
-          Confidentiality is paramount to our practice. Prior to receiving any proprietary business details, source code summaries, or financial documentation, we execute a mutual Non-Disclosure Agreement (NDA). All client documentation is maintained within secure, encrypted Canadian cloud infrastructure conforming to strict privacy standards.
+          Costs may vary depending on the service and your specific requirements. Contact our team to discuss pricing and any applicable fees before proceeding.
         </p>
       )
     },
     {
-      question: "How quickly can we start, and what is the onboarding process?",
+      question: "How long does the process take?",
       answer: (
-        <div className="space-y-3">
-          <p>
-            We can typically initiate new engagements within 3 to 5 business days:
-          </p>
-          <ol className="space-y-2 pl-1">
-            <li className="flex items-start gap-2">
-              <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-brand-navy/10 text-brand-navy text-[11px] font-bold mt-0.5">1</span>
-              <span><strong className="text-brand-navy">Initial Discovery Call:</strong> A 30-minute consultation to understand your immediate objectives, challenges, and timelines.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-brand-navy/10 text-brand-navy text-[11px] font-bold mt-0.5">2</span>
-              <span><strong className="text-brand-navy">Proposal & Roadmap:</strong> A customized scope of work outlining deliverables, timelines, and milestones.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-brand-navy/10 text-brand-navy text-[11px] font-bold mt-0.5">3</span>
-              <span><strong className="text-brand-navy">Kickoff & Execution:</strong> Formal onboarding, secure documentation setup, and immediate commencement of strategic work.</span>
-            </li>
-          </ol>
-        </div>
+        <p>
+          Timelines depend on the nature and complexity of the service. We aim to provide clear information about the expected process and timeframe from the beginning.
+        </p>
+      )
+    },
+    {
+      question: "Can I access IPAK’s services online?",
+      answer: (
+        <p>
+          Please contact our team to confirm which services are available remotely and whether an in-person appointment is required.
+        </p>
+      )
+    },
+    {
+      question: "What makes IPAK different from other service providers?",
+      answer: (
+        <p>
+          We believe that understanding each client’s needs, providing clear communication and identifying practical solutions are essential to delivering a positive customer experience.
+        </p>
+      )
+    },
+    {
+      question: "Is my personal information kept confidential?",
+      answer: (
+        <p>
+          We recognise the importance of protecting personal information. Please refer to our Privacy Policy for details of how information is collected, used and protected.
+        </p>
+      )
+    },
+    {
+      question: "What if I have questions or need additional support?",
+      answer: (
+        <p>
+          We’re here to help. If you have questions about our services or need further clarification, please contact our team through the website.
+        </p>
       )
     }
   ];
@@ -115,7 +107,7 @@ export default function FAQ() {
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            Everything you need to know about our business consulting, SR&ED grant recovery, executive coaching, and Canadian engagement process.
+            Everything you need to know about our business consulting, engagement process, and how we support your growth.
           </p>
         </div>
 
@@ -142,7 +134,7 @@ export default function FAQ() {
                     <span className={`flex-shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full text-xs font-bold transition-colors duration-500 ${
                       isOpen ? 'bg-brand-navy text-brand-gold' : 'bg-brand-navy-subtle text-brand-navy'
                     }`}>
-                      0{index + 1}
+                      {index + 1 < 10 ? `0${index + 1}` : index + 1}
                     </span>
                     <span className="font-serif font-bold text-base sm:text-lg text-brand-navy leading-snug">
                       {faq.question}
